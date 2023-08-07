@@ -65,6 +65,12 @@ def get_shuffle_py1b(shard_sizes: NDArray[np.int64],
             span_size = end - begin
             ids[offset:offset + span_size] = np.arange(begin, end)
             offset += span_size
+        print(f"{type(super_offset)=}")
+        print(f"{type(offset)=}")
+        print(f"{type(block_size)=}")
+        print(super_offset)
+        print(offset)
+        print(block_size)
         for start in range(super_offset, offset, block_size):
             stop = min(start + block_size, offset)
             epoch_rng.shuffle(ids[start:stop])
